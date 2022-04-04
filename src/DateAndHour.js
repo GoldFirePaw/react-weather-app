@@ -27,8 +27,8 @@ export default function DateAndHour() {
 
 
     return (
-        <div className="container">
-            <p>Today is : {day} {date} of {month}</p>
-            <p>It is now : {hours}h{min}min</p>
+        <div className="date-container">
+            <p>Today is : {day} {date} of {month}<br />
+                It is now : {hours}h{min}min</p>
         </div>);
 }

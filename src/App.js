@@ -12,13 +12,20 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Weather app</h1>
-      <Search onSubmit={setCity} />
-      <CurrentLocationButton onClick={setCity} />
-      <DateAndHour />
-      <Weather city={city} />
+      <div className="app-container">
+        <h1>Weather app</h1>
+        <i class="fa-solid fa-sun weather-icon"></i>
+        <Search onSubmit={setCity} />
+        <div className="container">
+          <div className="row">
+            <div className="col"><CurrentLocationButton onClick={setCity} />            </div>
 
+            <div className="col"><DateAndHour /></div>
+          </div>
+        </div>
+        <Weather city={city} />
+      </div>
 
-    </div>
+    </div >
   );
 }

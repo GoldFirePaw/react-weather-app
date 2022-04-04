@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./currentLocationButton.css";
 
 
 export default function CurrentLocationButton(props) {
@@ -18,5 +19,5 @@ export default function CurrentLocationButton(props) {
 
     }
 
-    return <button type="button" onClick={handleClick} className="btn btn-primary">Current Location</button>
+    return <button type="button" onClick={handleClick} className="btn btn-primary geolocation-button">Current Location</button>
 }

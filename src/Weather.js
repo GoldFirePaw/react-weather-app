@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./weather.css";
 
 export default function Weather(props) {
     const apiKey = "0f687b8ce7b2a635f662f6784501a1b1";
@@ -48,7 +49,7 @@ export default function Weather(props) {
 
     if (!city) {
         return (
-            <div className="container">
+            <div className="weather-container">
                 <h2>Weather in {currentCity}</h2>
                 <div className="row">
                     <div className="col">
@@ -66,7 +67,7 @@ export default function Weather(props) {
     }
     else {
         return (
-            <div className="container">
+            <div className="weather-container">
                 <h2>Weather in {city}</h2>
                 <div className="row">
                     <div className="col">

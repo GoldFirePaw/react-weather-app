@@ -1,4 +1,5 @@
 import React from "react";
+import "./search.css";
 
 export default function Search(props) {
     function handleSubmit(event) {
@@ -14,7 +15,7 @@ export default function Search(props) {
                 id="inputSearch"
                 placeholder="Type your city name"
             />
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="search-button">
                 Submit
             </button>
         </form>

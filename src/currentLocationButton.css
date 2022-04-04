@@ -1,0 +1,12 @@
+.geolocation-button {
+    margin-top: 35px;
+    background-color: rgb(138, 192, 68);
+    border: 1px solid rgb(138, 192, 68);
+    border-radius: 20px;
+}
+
+.geolocation-button:hover {
+    background-color: rgb(244, 249, 238);
+    color: rgb(138, 192, 68);
+    border: 1px solid rgb(138, 192, 68);
+}
