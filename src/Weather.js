@@ -19,7 +19,8 @@ export default function Weather(props) {
 
         function getWeather(response) {
             setTemperature(Math.round(response.data.main.temp));
-            setWind(Math.round(response.data.wind.speed * 3.6));
+            if (unit === "metric") { setWind(Math.round(response.data.wind.speed) * 3.6) }
+            else { setWind(Math.round(response.data.wind.speed)) };
             setHumidity(response.data.main.humidity);
             setIconId(response.data.weather[0].icon);
             if (!city) {
@@ -66,7 +67,8 @@ export default function Weather(props) {
                     </div>
                     <div className="col">
                         <p>
-                            Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
+                            Temperature is {temperature}{unit === "metric" ? `°C` : `°F`} <br /> Wind is {wind}{unit === "metric" ? `km` : `m`}/h
+                            <br />
                             Humidity is {humidity}%
                         </p>
                     </div>
