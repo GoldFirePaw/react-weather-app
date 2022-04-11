@@ -13,6 +13,7 @@ export default function Weather(props) {
     const iconUrl = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
+    const [unit, setUnit] = useState("metric");
 
     useEffect(() => {
 
@@ -32,7 +33,7 @@ export default function Weather(props) {
         }
 
         if (city) {
-            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+            let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
 
             axios.get(url).then(getWeather);
         }
@@ -40,25 +41,35 @@ export default function Weather(props) {
         else {
             navigator.geolocation.getCurrentPosition(handlePosition)
 
-            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
             axios.get(url).then(getWeather);
 
         }
+    }, [city, latitude, longitude, unit]);
 
-    }, [city, latitude, longitude]);
+    function convertToFahr(event) {
+        setUnit("imperial")
+    }
+    function convertToCel(event) {
+        setUnit("metric")
+    }
 
     return (
-        <div className="weather-container">
-            <h2>{!city ? `Weather in ${currentCity}` : `Weather in ${city}`}</h2>
-            <div className="row">
-                <div className="col">
-                    <img src={iconUrl} alt="weather icon" />
-                </div>
-                <div className="col">
-                    <p>
-                        Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
-                        Humidity is {humidity}%
-                    </p>
+        <div>
+            <button type="button" onClick={convertToCel} className="btn unit-button">°C</button>
+            <button type="button" onClick={convertToFahr} className="btn unit-button">°F</button>
+            <div className="weather-container">
+                <h2>{!city ? `Weather in ${currentCity}` : `Weather in ${city}`}</h2>
+                <div className="row">
+                    <div className="col">
+                        <img src={iconUrl} alt="weather icon" />
+                    </div>
+                    <div className="col">
+                        <p>
+                            Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
+                            Humidity is {humidity}%
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
