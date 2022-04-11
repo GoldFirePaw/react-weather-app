@@ -47,40 +47,21 @@ export default function Weather(props) {
 
     }, [city, latitude, longitude]);
 
-    if (!city) {
-        return (
-            <div className="weather-container">
-                <h2>Weather in {currentCity}</h2>
-                <div className="row">
-                    <div className="col">
-                        <img src={iconUrl} alt="weather icon" />
-                    </div>
-                    <div className="col">
-                        <p>
-                            Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
-                            Humidity is {humidity}%
-                        </p>
-                    </div>
+    return (
+        <div className="weather-container">
+            <h2>{!city ? `Weather in ${currentCity}` : `Weather in ${city}`}</h2>
+            <div className="row">
+                <div className="col">
+                    <img src={iconUrl} alt="weather icon" />
+                </div>
+                <div className="col">
+                    <p>
+                        Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
+                        Humidity is {humidity}%
+                    </p>
                 </div>
             </div>
-        );
-    }
-    else {
-        return (
-            <div className="weather-container">
-                <h2>Weather in {city}</h2>
-                <div className="row">
-                    <div className="col">
-                        <img src={iconUrl} alt="weather icon" />
-                    </div>
-                    <div className="col">
-                        <p>
-                            Temperature is {temperature}°C <br /> Wind is {wind}km/h <br />
-                            Humidity is {humidity}%
-                        </p>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+        </div>
+    );
 }
+
