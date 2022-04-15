@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./weather.css";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
     const apiKey = "0f687b8ce7b2a635f662f6784501a1b1";
@@ -16,37 +17,32 @@ export default function Weather(props) {
     const [unit, setUnit] = useState("metric");
 
     useEffect(() => {
-
         function getWeather(response) {
             setTemperature(Math.round(response.data.main.temp));
             if (unit === "metric") { setWind(Math.round(response.data.wind.speed) * 3.6) }
             else { setWind(Math.round(response.data.wind.speed)) };
             setHumidity(response.data.main.humidity);
             setIconId(response.data.weather[0].icon);
+            setLatitude(response.data.coord.lat)
+            setLongitude(response.data.coord.lon)
             if (!city) {
                 setCurrentCity(response.data.name)
             }
         }
 
-        function handlePosition(position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-        }
-
         if (city) {
             let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
-
             axios.get(url).then(getWeather);
+        } else {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const { latitude, longitude } = position.coords;
+                setLatitude(latitude)
+                setLongitude(longitude)
+                let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
+                axios.get(url).then(getWeather);
+            })
         }
-
-        else {
-            navigator.geolocation.getCurrentPosition(handlePosition)
-
-            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
-            axios.get(url).then(getWeather);
-
-        }
-    }, [city, latitude, longitude, unit]);
+    }, [city, unit]);
 
     function convertToFahr(event) {
         setUnit("imperial")
@@ -74,6 +70,7 @@ export default function Weather(props) {
                     </div>
                 </div>
             </div>
+            <Forecast latitude={latitude} longitude={longitude} unit={unit} />
         </div>
     );
 }
