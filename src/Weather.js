@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./weather.css";
 import Forecast from "./Forecast";
+import WeatherIcon from "./WeatherIcon";
+import { mockWeatherApi } from './utils/mock'
 
 export default function Weather(props) {
-    const apiKey = "0f687b8ce7b2a635f662f6784501a1b1";
+    const apiKey = "25f52e06da5b2fdd1326f6f6848418de";
     let { city } = props;
     let [currentCity, setCurrentCity] = useState(null)
     const [temperature, setTemperature] = useState(null);
     const [wind, setWind] = useState(null);
     const [humidity, setHumidity] = useState(null);
-    const [iconId, setIconId] = useState(null);
-    const iconUrl = `http://openweathermap.org/img/wn/${iconId}@2x.png`;
     const [latitude, setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [unit, setUnit] = useState("metric");
+    const [iconId, setIconId] = useState(null);
+
 
     useEffect(() => {
         function getWeather(response) {
@@ -36,10 +38,9 @@ export default function Weather(props) {
         } else {
             navigator.geolocation.getCurrentPosition(function (position) {
                 const { latitude, longitude } = position.coords;
-                setLatitude(latitude)
-                setLongitude(longitude)
                 let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
                 axios.get(url).then(getWeather);
+                //mockWeatherApi().then(getWeather)
             })
         }
     }, [city, unit]);
@@ -59,7 +60,7 @@ export default function Weather(props) {
                 <h2>{!city ? `Weather in ${currentCity}` : `Weather in ${city}`}</h2>
                 <div className="row">
                     <div className="col">
-                        <img src={iconUrl} alt="weather icon" />
+                        <WeatherIcon iconId={iconId} />
                     </div>
                     <div className="col">
                         <p>

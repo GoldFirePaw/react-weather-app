@@ -8,7 +8,7 @@ export default function CurrentLocationButton(props) {
     function handleClick(event) {
 
         navigator.geolocation.getCurrentPosition(function handlePosition(position) {
-            const apiKey = "0f687b8ce7b2a635f662f6784501a1b1";
+            const apiKey = "25f52e06da5b2fdd1326f6f6848418de";
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
             let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;

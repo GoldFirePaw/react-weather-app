@@ -14,8 +14,8 @@
 }
 
 .search-button:hover {
-    background-color: rgb(244, 249, 238);
-    color: rgb(138, 192, 68);
+    background-color: rgb(181, 219, 250);
+    color: var(--main-color);
     border: 1px solid var(--main-color);
 }
 

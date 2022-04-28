@@ -6,7 +6,6 @@ import Weather from "./Weather";
 import DateAndHour from "./DateAndHour";
 import CurrentLocationButton from "./CurrentLocationButton";
 
-
 export default function App() {
   let [city, setCity] = useState("");
 
@@ -14,18 +13,19 @@ export default function App() {
     <div className="App">
       <div className="app-container">
         <h1>Weather app</h1>
-        <i class="fa-solid fa-sun weather-icon"></i>
+        <i className="fa-solid fa-sun weather-icon"></i>
         <Search onSubmit={setCity} />
         <div className="container">
           <div className="row">
-            <div className="col"><CurrentLocationButton onClick={setCity} />            </div>
-
-            <div className="col"><DateAndHour /></div>
+            <div className="col">
+              <CurrentLocationButton onClick={setCity} />
+            </div>
+            <div className="col">
+              <DateAndHour /></div>
           </div>
         </div>
         <Weather city={city} />
       </div>
-
     </div >
   );
 }
