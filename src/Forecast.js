@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ForecastDay from "./ForecastDay";
 import axios from "axios";
-import { mockForecast } from "./utils/mock";
+//import { mockForecast } from "./utils/mock";
 import "./styles.css";
 
 export default function Forecast(props) {

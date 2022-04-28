@@ -3,7 +3,7 @@ import axios from "axios";
 import "./weather.css";
 import Forecast from "./Forecast";
 import WeatherIcon from "./WeatherIcon";
-import { mockWeatherApi } from './utils/mock'
+//import { mockWeatherApi } from './utils/mock'
 
 export default function Weather(props) {
     const apiKey = "25f52e06da5b2fdd1326f6f6848418de";
