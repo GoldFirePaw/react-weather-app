@@ -13,7 +13,6 @@ export default function App() {
     <div className="App">
       <div className="app-container">
         <h1>Weather app</h1>
-        <i className="fa-solid fa-sun weather-icon"></i>
         <Search onSubmit={setCity} />
         <div className="container">
           <div className="row">
